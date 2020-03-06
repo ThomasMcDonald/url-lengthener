@@ -1,0 +1,41 @@
+<html>
+<head>
+
+</head>
+
+
+
+<body>
+
+<form action='/shorten' method='POST' id='urlForm'>
+    Test: <input type='text' id='urltoLengthen'></input>
+
+    <input type="submit" value="Submit">
+</form>
+
+<p id='newUrl'></p>
+
+    
+</body>
+
+<script>
+    document.querySelector("#urlForm").addEventListener("submit", async (e) => {
+        e.preventDefault(); 
+        const value = document.getElementById('urltoLengthen').value;
+        console.log(value)
+
+        const lengthenedUrl = await fetch('/shorten', {
+            method: 'POST',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({url: value})
+        });
+        const { lengthenedURL } = await lengthenedUrl.json();
+        console.log(lengthenedURL)
+        document.getElementById('newUrl').innerText = lengthenedURL;
+    });
+</script>
+
+</html>
