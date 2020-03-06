@@ -13,7 +13,7 @@
     <input type="submit" value="Submit">
 </form>
 
-<p id='newUrl'></p>
+<textarea id='newUrl'></textarea>
 
     
 </body>
@@ -22,7 +22,6 @@
     document.querySelector("#urlForm").addEventListener("submit", async (e) => {
         e.preventDefault(); 
         const value = document.getElementById('urltoLengthen').value;
-        console.log(value)
 
         const lengthenedUrl = await fetch('/shorten', {
             method: 'POST',
@@ -32,9 +31,9 @@
             },
             body: JSON.stringify({url: value})
         });
-        const { lengthenedURL } = await lengthenedUrl.json();
-        console.log(lengthenedURL)
-        document.getElementById('newUrl').innerText = lengthenedURL;
+        const {data} = await lengthenedUrl.json();
+        console.log(data);
+        document.getElementById('newUrl').value = data.lengthenedUrl;
     });
 </script>
 
