@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== 'production') {
 const app = express();
 const port = process.env.PORT || 8080;
 
-const host = `${process.env.REG_HOST}:${port}` || 'http://localhost:8080';
+const host = `${process.env.REG_HOST}` || 'http://localhost:8080';
 
 const { getUrl, createUrl } = require('./server/url_controller');
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/urlLengthy',{ useNewUrlParser: true, useUnifiedTopology: true });
