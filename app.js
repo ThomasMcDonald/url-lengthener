@@ -6,7 +6,7 @@ const app = express();
 const port = process.env.PORT || 8080;
 const mongoose = require('mongoose');
 const chalk = require('chalk'); 
-
+const host = process.env.HOST || 'http://localhost:8080';
 // add to enviro variables eventually
 const { getUrl, createUrl } = require('./server/url_controller');
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/urlLengthy',{ useNewUrlParser: true, useUnifiedTopology: true });
@@ -28,7 +28,7 @@ app.post('/shorten', async (req, res) => {
         const lengthenedUrl = initialHash.split('').join(`_${initialHash}_`).slice(0,2048);
         const data = await createUrl({hostName: 'google', lengthenedUrl, originalUrl: url});
         
-        res.json({data});
+        res.json({lengthenedUrl: `${host}/u/${data.lengthenedUrl}`});
     }catch(err){
         console.error(err);
         res.json({err});

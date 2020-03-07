@@ -8,7 +8,7 @@ document.querySelector("#urlForm").addEventListener("submit", async (e) => {
         showErrorMessage();
         return;
     }
-    const lengthenedUrl = await fetch('/shorten', {
+    const response = await fetch('/shorten', {
         method: 'POST',
         headers: {
         'Accept': 'application/json',
@@ -16,8 +16,8 @@ document.querySelector("#urlForm").addEventListener("submit", async (e) => {
         },
         body: JSON.stringify({url: potentionalUrl})
     });
-    const {data} = await lengthenedUrl.json();
-    document.getElementById('urlList').insertAdjacentHTML('beforeend', listComponent(data));
+    const lengthenedUrl = await response.json();
+    document.getElementById('urlList').insertAdjacentHTML('beforeend', listComponent(lengthenedUrl));
 });
 
 
