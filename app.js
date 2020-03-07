@@ -2,12 +2,18 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path');
 const crypto = require('crypto');
-const app = express();
-const port = process.env.PORT || 8080;
 const mongoose = require('mongoose');
 const chalk = require('chalk'); 
-const host = process.env.HOST || 'http://localhost:8080';
-// add to enviro variables eventually
+
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+  }
+
+const app = express();
+const port = process.env.PORT || 8080;
+
+const host = `${process.env.REG_HOST}:${port}` || 'http://localhost:8080';
+
 const { getUrl, createUrl } = require('./server/url_controller');
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/urlLengthy',{ useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
@@ -49,9 +55,8 @@ app.get('/u/:shortUrl', async(req, res) => {
     }
 })
 
-
 const server = app.listen(port, function () {
     const host = server.address().address
     const port = server.address().port
     console.log("Listening on %s %s", host, port)
- })
+ });
