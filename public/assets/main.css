@@ -1,0 +1,77 @@
+body{
+    background-color: #0B1736;
+}
+#lengthyDiv {
+    margin: 10em auto;
+    width: 50%;
+}
+#lengthyBtn{
+    min-width:20%;
+    margin-bottom: 10px;
+    height: 60px;
+}
+#lengthenFormGroup{
+    width:75%;
+}
+#urltoLengthen{
+    width:100%;
+    height: 60px;
+    border: 1px solid #d3d4d7;
+    border-radius: 8px 8px 8px 8px;
+    color: #36383b;
+    padding: 0 20px;
+    font-size: 20px;
+}
+#urlList{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
+}
+.urlContainer{
+    background-color:white;
+    padding: 16px 20px;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    font-size: 18px;
+    margin-bottom: 1em;
+    border-radius: 10px;
+}
+.urlContainer > span {
+    display: inline-block;
+    vertical-align: middle;
+}
+.longUrl{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 75%;
+}
+
+.copyBtn{
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 16px;
+    background: #edf2fe;
+    color: #2a5bd7;
+    min-width: 20px;
+}
+.copyBtn:focus{
+    border:none;
+}
+.copiedDataBtn{
+    background: #649949;
+    color: white;
+}
+
+.copiedDataBtn:hover{
+    background: #649949;
+    color: white;
+}
+
+
+#urlError{
+    display:none;
+    transition: 1s opacity;
+}

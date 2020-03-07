@@ -1,40 +1,33 @@
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> 
+    <link rel='stylesheet' href='./assets/main.css'></link>
+    <title>Url Lengthener</title>
 
 </head>
 
-
-
 <body>
+   
 
-<form action='/shorten' method='POST' id='urlForm'>
-    Test: <input type='text' id='urltoLengthen'></input>
-
-    <input type="submit" value="Submit">
-</form>
-
-<textarea id='newUrl'></textarea>
-
+    <div id='lengthyDiv'>
+        <span style='text-align:center; color:white'><h2>URL Lengthener</h2></span>
+        <form class="form-inline" id='urlForm'>
+            <div class="form-group mx-sm-3 mb-2" id='lengthenFormGroup'>
+                <input type="text" class="form-control" id="urltoLengthen" placeholder="Lengthen your link">
+            </div>
+            <button type="submit" id='lengthyBtn'class="btn btn-primary btn-lg">Lengthen</button>
+        </form>
+        <ul id='urlList'>
+            <div id='urlError' class="alert alert-danger text-center align-center" role="alert">
+                <span class="text-center align-center">Unable to lengthen that link. It is not a valid url.</span>
+            </div>;
+        </ul>
+    </div>  
     
+    
+    <script src='./assets/main.js'></script>
 </body>
-
-<script>
-    document.querySelector("#urlForm").addEventListener("submit", async (e) => {
-        e.preventDefault(); 
-        const value = document.getElementById('urltoLengthen').value;
-
-        const lengthenedUrl = await fetch('/shorten', {
-            method: 'POST',
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({url: value})
-        });
-        const {data} = await lengthenedUrl.json();
-        console.log(data);
-        document.getElementById('newUrl').value = data.lengthenedUrl;
-    });
-</script>
-
 </html>
+

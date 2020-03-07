@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const urlSchema = new Schema({
-  title: String,
+  hostName: String,
   lengthenedUrl: String,
   originalUrl: String,
 });
