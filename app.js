@@ -33,7 +33,7 @@ app.post('/shorten', async (req, res) => {
         const initialHash = crypto.createHash('sha256').update(url).digest('hex') + new Date().getTime();
         const lengthenedUrl = initialHash.split('').join(`_${initialHash}_`).slice(0,2048);
         const data = await createUrl({hostName: 'google', lengthenedUrl, originalUrl: url});
-        
+        console.log('Shortening URL %s', data.originalUrl);
         res.json({lengthenedUrl: `${host}/u/${data.lengthenedUrl}`});
     }catch(err){
         console.error(err);
@@ -46,7 +46,7 @@ app.get('/u/:shortUrl', async(req, res) => {
     const { shortUrl } = req.params;
     try{
         const data = await getUrl(shortUrl);
-        console.log(data.originalUrl);
+        console.log('Redirecting User to: ', data.originalUrl);
         if(data) res.redirect(data.originalUrl);
         else res.redirect('/');
     }catch(err){
